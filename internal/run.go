@@ -50,7 +50,6 @@ func startServer(cfg Config) {
 
 	err := http.ListenAndServe(cfg.Server.Host, server)
 	if err != nil {
-		// Поменять обработку ошибок
 		log.Fatal(err)
 	}
 }
