@@ -1,8 +1,6 @@
 module github.com/monsterr00/gopher_mart
 
-go 1.22.0
-
-toolchain go1.22.1
+go 1.21
 
 require (
 	github.com/go-chi/chi/v5 v5.1.0
