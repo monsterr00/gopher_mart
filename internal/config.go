@@ -11,7 +11,7 @@ import (
 
 type Config struct {
 	Server     Server
-	Db         Db
+	Db         DB
 	AccrualSys AccrualSys
 	Resty      Resty
 }
@@ -20,7 +20,7 @@ type Server struct {
 	Host string
 }
 
-type Db struct {
+type DB struct {
 	Address        string
 	MigrationsPath string
 	Conn           *sql.DB
@@ -82,13 +82,13 @@ func loadServer() (Server, error) {
 	}, nil
 }
 
-func loadDB() (Db, error) {
+func loadDB() (DB, error) {
 	envAddress, isSet := os.LookupEnv("DATABASE_URI")
 	if isSet && envAddress != "" {
 		Flags.DBHost = envAddress
 	}
 
-	return Db{
+	return DB{
 		Address:        Flags.DBHost,
 		MigrationsPath: "db/migrations",
 		Conn:           nil,
