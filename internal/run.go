@@ -31,16 +31,16 @@ func Run() error {
 		return err
 	}
 
-	cfg.Db.Conn = startDB(cfg)
+	cfg.DB.Conn = startDB(cfg)
 	startServer(cfg)
 
 	return nil
 }
 
 func startServer(cfg Config) {
-	userRepo := usersInfra.NewUserPostgresRepo(cfg.Db.Conn)
-	orderRepo := ordersInfra.NewOrderPostgresRepo(cfg.Db.Conn)
-	withdrawalRepo := withdrawalsInfra.NewWithdrawalPostgresRepo(cfg.Db.Conn)
+	userRepo := usersInfra.NewUserPostgresRepo(cfg.DB.Conn)
+	orderRepo := ordersInfra.NewOrderPostgresRepo(cfg.DB.Conn)
+	withdrawalRepo := withdrawalsInfra.NewWithdrawalPostgresRepo(cfg.DB.Conn)
 
 	uCrRepo := uCrServ.NewUserCreationService(userRepo)
 	oCrRepo := oCrServ.NewOrderCreationService(orderRepo, userRepo, cfg.AccrualSys.Host, cfg.Resty.Client)
@@ -55,13 +55,13 @@ func startServer(cfg Config) {
 }
 
 func startDB(cfg Config) *sql.DB {
-	db, err := sql.Open("postgres", cfg.Db.Address)
+	db, err := sql.Open("postgres", cfg.DB.Address)
 	if err != nil {
 		// Поменять обработку ошибок
 		log.Fatal(err)
 	}
 
-	filePath := helpers.AbsolutePath("file:///", cfg.Db.MigrationsPath)
+	filePath := helpers.AbsolutePath("file:///", cfg.DB.MigrationsPath)
 
 	driver, err := postgres.WithInstance(db, &postgres.Config{})
 	if err != nil {
