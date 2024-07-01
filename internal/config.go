@@ -11,7 +11,7 @@ import (
 
 type Config struct {
 	Server     Server
-	Db         DB
+	DB         DB
 	AccrualSys AccrualSys
 	Resty      Resty
 }
@@ -50,7 +50,7 @@ func LoadConfig() (Config, error) {
 		return config, fmt.Errorf("could not load server config: %w", err)
 	}
 
-	config.Db, err = loadDB()
+	config.DB, err = loadDB()
 	if err != nil {
 		/// поменять обработку ошибок
 		return config, fmt.Errorf("could not load db config: %w", err)
