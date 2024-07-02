@@ -33,7 +33,7 @@ func (r *UserPostgresRepo) SaveUser(ctx context.Context, user entities.User) err
 		(ID, Login, Password)
 		VALUES
 		($1, $2, $3);
-	    `, user.Id, user.Login, user.Password)
+	    `, user.ID, user.Login, user.Password)
 	if err != nil {
 		return i.HandlePSQLError(err, i.MsgInsertError)
 	}
@@ -62,7 +62,7 @@ func (r *UserPostgresRepo) GetUserByLogin(ctx context.Context, login string) (en
 	)
 
 	var user entities.User
-	err := row.Scan(&user.Id, &user.Login, &user.Password, &user.CreatedAt, &user.Balance, &user.SpendedBonuses)
+	err := row.Scan(&user.ID, &user.Login, &user.Password, &user.CreatedAt, &user.Balance, &user.SpendedBonuses)
 	if err != nil {
 		return user, i.HandlePSQLError(err, i.MsgSelectError)
 	}

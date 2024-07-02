@@ -8,7 +8,7 @@ import (
 )
 
 type Order struct {
-	Id             uuid.UUID //Id
+	ID             uuid.UUID //Id
 	OrderNum       string    `json:"number"`            // Номер заказа
 	Login          string    `json:"login"`             // Логин
 	CreatedAt      time.Time `json:"uploaded_at"`       // Дата регистрации

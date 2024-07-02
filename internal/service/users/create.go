@@ -11,7 +11,7 @@ import (
 func (ucs *UserCreationService) SaveUser(ctx context.Context, user entities.User) error {
 	var err error
 
-	user.Id, _ = uuid.NewRandom()
+	user.ID, _ = uuid.NewRandom()
 
 	user.Password, err = user.HashPassword()
 	if err != nil {

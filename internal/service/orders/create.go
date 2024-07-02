@@ -16,7 +16,7 @@ func (ocs *OrderCreationService) SaveOrder(ctx context.Context, order entities.O
 		return err
 	}
 
-	order.Id, _ = uuid.NewRandom()
+	order.ID, _ = uuid.NewRandom()
 	err = ocs.orderRepo.SaveOrder(ctx, order)
 	if err != nil {
 		return err
