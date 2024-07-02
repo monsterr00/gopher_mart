@@ -39,7 +39,7 @@ func (wcs *WithdrawalCreationService) GetWithdrawals(ctx context.Context, login 
 	return fWithdrawals, nil
 }
 
-func (ocs *WithdrawalCreationService) formatDate(withdrawals []entities.Withdrawal) ([]entities.FormatedWithdrawal, error) {
+func (wcs *WithdrawalCreationService) formatDate(withdrawals []entities.Withdrawal) ([]entities.FormatedWithdrawal, error) {
 	var fWithdrawals []entities.FormatedWithdrawal
 
 	for _, w := range withdrawals {

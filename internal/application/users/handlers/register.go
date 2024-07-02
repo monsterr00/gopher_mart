@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"bytes"
+	"encoding/base64"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -78,7 +79,8 @@ func (h *UserHandler) Register(res http.ResponseWriter, req *http.Request) {
 	}
 
 	res.Header().Set("Content-Type", "text/plain; charset=utf-8")
-	res.Header().Set("Authorization", user.Login+":"+user.Password)
+	auth := user.Login + ":" + user.Password
+	res.Header().Set("Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(auth)))
 	res.WriteHeader(http.StatusOK)
 	res.Write([]byte(fmt.Sprintf("User registered:%s", user.Login)))
 }

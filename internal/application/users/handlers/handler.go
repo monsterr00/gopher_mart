@@ -10,6 +10,7 @@ import (
 type UserCreationService interface {
 	BasicAuth(next http.HandlerFunc) http.HandlerFunc
 	SaveUser(ctx context.Context, user entities.User) error
+	CheckAuth(ctx context.Context, user entities.User) error
 }
 
 type UserHandler struct {
