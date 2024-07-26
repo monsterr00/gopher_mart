@@ -16,7 +16,7 @@ func (ocs *OrderCreationService) SaveOrder(ctx context.Context, order entities.O
 		return err
 	}
 
-	order.Id, _ = uuid.NewRandom()
+	order.ID, _ = uuid.NewRandom()
 	err = ocs.orderRepo.SaveOrder(ctx, order)
 	if err != nil {
 		return err
@@ -26,7 +26,6 @@ func (ocs *OrderCreationService) SaveOrder(ctx context.Context, order entities.O
 	if err != nil {
 		return err
 	}
-
 	return nil
 }
 
@@ -76,7 +75,7 @@ func (ocs *OrderCreationService) registerOrder(ctx context.Context, order entiti
 	req := ocs.client.R().
 		SetHeader("Content-Type", "text/plain")
 
-	requestURL := fmt.Sprintf("%s%s%s%s", "http://", ocs.host, "/api/orders/", order.OrderNum)
+	requestURL := fmt.Sprintf("%s%s%s", ocs.host, "/api/orders/", order.OrderNum)
 
 	res, err := req.Get(requestURL)
 	if err != nil {

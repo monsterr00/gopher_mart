@@ -73,7 +73,7 @@ func (r *OrderPostgresRepo) SaveOrder(ctx context.Context, order entities.Order)
 		(ID, OrderNum, Login)
 		VALUES
 		($1, $2, $3);
-	    `, order.Id, order.OrderNum, order.Login)
+	    `, order.ID, order.OrderNum, order.Login)
 	if err != nil {
 		return i.HandlePSQLError(err, i.MsgInsertError)
 	}

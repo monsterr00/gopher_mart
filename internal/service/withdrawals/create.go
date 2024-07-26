@@ -16,7 +16,7 @@ func (wcs *WithdrawalCreationService) SaveOrder(ctx context.Context, order entit
 	}
 
 	if err == nil {
-		order.Id, _ = uuid.NewRandom()
+		order.ID, _ = uuid.NewRandom()
 		err = wcs.orderRepo.SaveOrder(ctx, order)
 		if err != nil {
 			return err

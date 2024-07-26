@@ -8,13 +8,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-// TO-DO
-/*
- Добавить валидацию полей логин и пароль
-*/
-
 type User struct {
-	Id             uuid.UUID
+	ID             uuid.UUID
 	Login          string    `json:"login"`    // Логин
 	Password       string    `json:"password"` // Пароль
 	CreatedAt      time.Time // Дата регистрации
@@ -22,22 +17,10 @@ type User struct {
 	SpendedBonuses float64   // Сумма списанных бнусов
 }
 
-func NewUser(id uuid.UUID, login string, password string) *User {
-	return &User{
-		Id:             id,
-		Login:          login,
-		Password:       password,
-		CreatedAt:      time.Now(),
-		Balance:        0,
-		SpendedBonuses: 0,
-	}
-}
-
 func (u User) ValidateUser() error {
 	if !u.validateLogin() || !u.validatePassword() {
 		return i.ErrValidate
 	}
-
 	return nil
 }
 
